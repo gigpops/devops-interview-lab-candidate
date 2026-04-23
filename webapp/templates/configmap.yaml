@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-content
+  labels:
+    {{- include "webapp.labels" . | nindent 4 }}
+data:
+  index.html: |
+    <html><body>
+      <h1>{{ tpl .Values.welcome.title . }}</h1>
+      <p>{{ tpl .Values.welcome.message . }}</p>
+    </body></html>

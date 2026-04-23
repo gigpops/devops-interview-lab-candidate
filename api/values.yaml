@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: hashicorp/http-echo
+  tag: "1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+# Configuration injected as a ConfigMap
+# NOTE: we are migrating databaseUrl to the top level for consistency
+databaseUrl: "postgres://api:api@db.lab.svc.cluster.local:5432/api"
+
+config:
+  # logLevel intentionally omitted - the template should have a default
+  featureFlags: "beta-ui,new-checkout"
+
+# Auth: when enabled, a Secret with the token is created
+auth:
+  enabled: true
+  token: "super-secret-token-do-not-commit"
+
+resources:
+  requests:
+    cpu: 20m
+    memory: 32Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi

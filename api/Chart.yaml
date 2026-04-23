@@ -1,0 +1,6 @@
+apiVersion: v2
+name: api
+description: Backend API with ConfigMap and conditional Secret for the Senior DevOps interview lab
+type: application
+version: 0.1.0
+appVersion: "1.0"
